@@ -2,21 +2,21 @@ pipeline{
 agent any
 stages{
   stage ("Git Checkout"){
-    step{
+    steps{
     git credentialsId: 'c3c1a832-7172-4a60-b6a0-cbce7500901a', url: 'https://github.com/B-Apoorva/sample-spring-microservices.git'
     }
   }
   stage("Build"){
-    step{
+    steps{
     sh 'mvn validate'
     }
-    step{
+    steps{
      sh 'mvn clean compile'
     }
-    step{
+    steps{
     sh 'mvn test'
     }
-    step{
+    steps{
     sh 'mvn clean package'
     }
     step{
@@ -24,7 +24,7 @@ stages{
     }
   }
   stage("Deploy"){
-    step{
+    steps{
     sh 'mvn deploy'
     }
   }
